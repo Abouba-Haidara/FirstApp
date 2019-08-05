@@ -1,0 +1,154 @@
+﻿Build1=Default,b4a.example
+File1=layout1.bal
+FileGroup1=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=1
+NumberOfModules=1
+Version=9.01
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+
+	Private b1 As Button
+	Private b4 As Button
+	Private b7 As Button
+	Private bpoint As Button
+	Private b2 As Button
+	Private b5 As Button
+	Private b8 As Button
+	Private b0 As Button
+	Private b3 As Button
+	Private b6 As Button
+	Private b9 As Button
+	Private bequal As Button
+	Private bplus As Button
+	Private bdivision As Button
+	Private bmul As Button
+	Private bmoins As Button
+	Private beffacer As Button
+	Private faco As Button
+	
+	Private affiche As String
+	Private Edit1 As Label
+	Private chiffre As Double
+	Private chiffreRef As Int
+	Private memo As Double
+	Private test As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("Layout1")
+	 
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub action_Click
+	affiche =  Edit1.Text
+	If IsNumber (affiche) Then chiffre = affiche
+	
+	Dim virtual As Button
+	virtual = Sender
+	Edit1.Text = ""
+	Select virtual.Text
+		Case "C"
+			Edit1.Text=Null
+			affiche=Null
+			Edit1.Tag= Null
+			test = 1
+			memo = Null
+		Case "+"
+			memo = chiffre
+			Edit1.Text="0"
+			Edit1.Tag= "+"
+			test = 1
+		Case "*"
+			memo = chiffre
+			Edit1.Text="0"
+			Edit1.Tag = "*"
+			test = 1
+		Case "-"
+			memo = chiffre
+			Edit1.Text="0"
+			Edit1.Tag = "-"
+			test = 1
+		Case "/"
+			memo = chiffre
+			Edit1.Text="0"
+			Edit1.Tag = "/"
+			test = 1
+		Case "="
+				If test = 0 Then
+					Return
+					Else
+						Select Edit1.Tag
+					        Case "c"
+					        	Edit1.Text = Null
+								affiche = Null
+							Case "+"
+								Edit1.Text = memo + chiffre
+								test =1
+					        Case "-"
+						       Edit1.Text = memo - chiffre
+						       test =1
+					        Case "*"
+						        Edit1.Text = memo * chiffre
+						        test =1
+					        Case "/"
+						        Edit1.Text = memo / chiffre
+						        test =1
+						End Select
+				End If
+		Case "."
+			chiffreRef =  chiffre
+			If chiffreRef = chiffre Then
+				Edit1.Text = virtual.Text
+				Else
+				Edit1.Text =affiche &  virtual.Text
+			End If
+	    Case Else
+			Edit1.Text = chiffre & virtual.Text
+	End Select
+End Sub
+Sub action_LongClick
+	Dim virtual As Button
+	virtual = Sender
+	Select virtual.Tag
+		Case "1"
+			Edit1.Text="0"
+	End Select
+End Sub
